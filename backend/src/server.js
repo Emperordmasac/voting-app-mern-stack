@@ -2,9 +2,16 @@ const Express = require("express");
 
 const setupMiddleware = require("./setup/middleware");
 
+const setupDatabase = require("./setup/database");
+
 const app = Express();
 setupMiddleware(app);
 
-app.listen(5000, () => {
-  console.log("sever is running on port 5000");
-});
+setupDatabase()
+  .then((client) => {
+    console.log(client);
+    app.listen(5000, () => {
+      console.log("sever is running on port 5000");
+    });
+  })
+  .catch(console.error);
