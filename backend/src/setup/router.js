@@ -4,10 +4,10 @@ const createPolls = require("../handlers/create-polls");
 
 const createPollsValidator = require("../validators/create-polls");
 
-module.exports = (app, client) => {
+module.exports = (app, db) => {
   const router = new Router();
 
-  router.post("/", createPollsValidator, createPolls(client));
+  router.post("/", createPollsValidator, createPolls(db));
 
   app.use(router);
 };

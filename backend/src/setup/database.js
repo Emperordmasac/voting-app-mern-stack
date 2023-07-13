@@ -2,8 +2,10 @@ const MongoDB = require("mongodb");
 
 const uri = "mongodb://0.0.0.0:27017/voting-databse";
 
-module.exports = () => {
+module.exports = async () => {
   const client = new MongoDB.MongoClient(uri);
 
-  return client.connect();
+  await client.connect();
+
+  return client.db();
 };
